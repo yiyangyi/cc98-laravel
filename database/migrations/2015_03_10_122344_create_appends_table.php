@@ -15,6 +15,8 @@ class CreateAppendsTable extends Migration {
 		Schema::create('appends', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('topic_id')->index();
+			$table->text('content');
 			$table->timestamps();
 		});
 	}
