@@ -15,6 +15,11 @@ class CreateNodesTable extends Migration {
 		Schema::create('nodes', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('name')->index();
+			$table->string('slug')->nullable()->index();
+			$table->smallInteger('parent_node')->nullable()->index();
+			$table->text('description')->nullable();
+			$table->integer('topic_count')->default(0)->index();
 			$table->timestamps();
 		});
 	}
