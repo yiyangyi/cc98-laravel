@@ -16,6 +16,7 @@ class CreateRepliesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->text('body');
+			$table->text('body_original');
 			$table->integer('user_id')->index();
 			$table->integer('topic_id')->index();
 			$table->integer('vote_count')->default(0)-index();
