@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('blocked')->default(false)->index();
 			$table->integer('topic_count')->default(0)->index();
 			$table->integer('reply_count')->default(0)->index();
+			$table->integer('notification_count')->default(0);
 			$table->string('city')->nullable();
 			$table->string('website')->nullable();
 			$table->string('signature')->nullable();
