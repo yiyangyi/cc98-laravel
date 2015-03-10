@@ -15,6 +15,11 @@ class CreateRepliesTable extends Migration {
 		Schema::create('replies', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->text('body');
+			$table->integer('user_id')->index();
+			$table->integer('topic_id')->index();
+			$table->integer('vote_count')->default(0)-index();
+			$table->boolean('blocked')->default(false)->index();
 			$table->timestamps();
 		});
 	}
