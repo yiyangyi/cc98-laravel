@@ -17,6 +17,8 @@ class CreateTopicsTable extends Migration {
 			$table->increments('id');
 			$table->string('title')->index();
 			$table->text('body');
+			$table->text('body_orginal');
+			$table->text('excerpt')->nullable();
 			$table->integer('user_id')->index();
 			$table->integer('node_id')->index();
 			$table->boolean('excellent')->default(false)->index();
@@ -26,6 +28,7 @@ class CreateTopicsTable extends Migration {
 			$table->integer('favorite_count')->default(0)->index();
 			$table->integer('vote_count')->default(0)->index();
 			$table->integer('last_reply_user_id')->default(0)->index();
+			$table->integer('order')->default(0)->index();
 			$table->softDeletes();
 			$table->timestamps();
 		});
