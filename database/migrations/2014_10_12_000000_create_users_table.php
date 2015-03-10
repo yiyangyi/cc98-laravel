@@ -16,9 +16,18 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->string('email')->unique();
+			$table->string('email')->unique()->nullable();
 			$table->string('password', 60);
+			$table->string('avatar')->nullable();
+			$table->boolean('blocked')->default(false)->index();
+			$table->integer('topic_count')->default(0)->index();
+			$table->integer('reply_count')->default(0)->index();
+			$table->string('city')->nullable();
+			$table->string('website')->nullable();
+			$table->string('signature')->nullable();
+			$table->string('introduction')->nullable();
 			$table->rememberToken();
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}
