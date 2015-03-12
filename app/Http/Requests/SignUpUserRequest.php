@@ -22,7 +22,8 @@ class SignUpUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'name'   => 'alpha_num|required|unique:users',
+			'email'  => 'email'
 		];
 	}
 
