@@ -87,7 +87,7 @@ Route::get('attentions/{id}', [
 
 Route::post('upload_image', [
 	'middleware' => 'auth', 
-	'as' => 'upload_image'
+	'as' => 'upload_image',
 	'uses' => 'TopicsController@uploadImage'
 ]);
 
@@ -195,7 +195,7 @@ Route::group(['middleware' => 'manage_topics'], function()
 	]);
 
 	Route::delete('topics/delete/{id}', [
-		'as' => 'topics.destroy'
+		'as' => 'topics.destroy',
 		'uses' => 'TopicsController@destroy'
 	]);
 });
