@@ -11,6 +11,16 @@ var elixir = require('laravel-elixir');
  |
  */
 
+elixir.config.sourcemaps = false;
+
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.less('app.less')
+       .sass()
+       .styles([], '')
+       .stylesIn("public/css")
+       .scripts([], '')
+       .scriptsIn("public/js")
+       .coffee()
+       .phpUnit()
+       .phpSpec();
 });
