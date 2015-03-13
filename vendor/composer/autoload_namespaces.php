@@ -31,5 +31,6 @@ return array(
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
+    'Clockwork' => array($vendorDir . '/itsgoingd/clockwork'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );
