@@ -22,7 +22,9 @@ class CreateTopicRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'title'    => 'required|min:2',
+			'body'     => 'required|min:10',
+			'node_id'  => 'required|numeric'
 		];
 	}
 

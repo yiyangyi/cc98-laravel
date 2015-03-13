@@ -22,8 +22,10 @@ class MakeReplyRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
-		];
+			'body'      => 'required|min:10',
+			'user_id'   => 'required|numeric',
+			'topic_id'  => 'required|numeric'
+ 		];
 	}
 
 }

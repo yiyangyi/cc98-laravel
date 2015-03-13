@@ -22,7 +22,7 @@ class UpdateUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			
 		];
 	}
 
