@@ -11,8 +11,8 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		View::share('currentUser', Auth::user());
-		View::share('siteTip', Tip::getRandomTip());
+		// View::share('currentUser', Auth::user());
+		// View::share('siteTip', Tip::getRandomTip());
 	}
 
 	/**

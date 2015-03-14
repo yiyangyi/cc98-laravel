@@ -1,4 +1,5 @@
 .idea*
 /node_modules
-/vendor
+vendor/*
 .env 
+storage/clockwork/*

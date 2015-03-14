@@ -12,7 +12,8 @@
 namespace Psy\CodeCleaner;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr as Expr;
+use PhpParser\Node\Expr;
+use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\New_ as NewExpr;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_ as ClassStmt;
@@ -60,6 +61,8 @@ class ValidClassNamePass extends NamespaceAwarePass
             $this->validateTraitStatement($node);
         } elseif ($node instanceof NewExpr) {
             $this->validateNewExpression($node);
+        } elseif ($node instanceof ClassConstFetch) {
+            $this->validateClassConstFetchExpression($node);
         }
     }
 
@@ -78,7 +81,7 @@ class ValidClassNamePass extends NamespaceAwarePass
     }
 
     /**
-     * Validate an interface definition statment.
+     * Validate an interface definition statement.
      *
      * @param InterfaceStmt $stmt
      */
@@ -89,7 +92,7 @@ class ValidClassNamePass extends NamespaceAwarePass
     }
 
     /**
-     * Validate a trait definition statment.
+     * Validate a trait definition statement.
      *
      * @param TraitStmt $stmt
      */
@@ -112,7 +115,22 @@ class ValidClassNamePass extends NamespaceAwarePass
     }
 
     /**
+     * Validate a class constant fetch expression's class.
+     *
+     * @param ClassConstFetch $stmt
+     */
+    protected function validateClassConstFetchExpression(ClassConstFetch $stmt)
+    {
+        // if class name is an expression, give it a pass for now
+        if (!$stmt->class instanceof Expr) {
+            $this->ensureClassExists($this->getFullyQualifiedName($stmt->class), $stmt);
+        }
+    }
+
+    /**
      * Ensure that no class, interface or trait name collides with a new definition.
+     *
+     * @throws FatalErrorException
      *
      * @param Stmt $stmt
      */
@@ -142,6 +160,8 @@ class ValidClassNamePass extends NamespaceAwarePass
     /**
      * Ensure that a referenced class exists.
      *
+     * @throws FatalErrorException
+     *
      * @param string $name
      * @param Stmt   $stmt
      */
@@ -155,12 +175,15 @@ class ValidClassNamePass extends NamespaceAwarePass
     /**
      * Ensure that a referenced interface exists.
      *
-     * @param string $name
-     * @param Stmt   $stmt
+     * @throws FatalErrorException
+     *
+     * @param $interfaces
+     * @param Stmt $stmt
      */
     protected function ensureInterfacesExist($interfaces, $stmt)
     {
         foreach ($interfaces as $interface) {
+            /** @var string $name */
             $name = $this->getFullyQualifiedName($interface);
             if (!$this->interfaceExists($name)) {
                 throw $this->createError(sprintf('Interface \'%s\' not found', $name), $stmt);
@@ -227,7 +250,7 @@ class ValidClassNamePass extends NamespaceAwarePass
      *
      * @param string $name
      *
-     * @return string
+     * @return string|null
      */
     protected function findInScope($name)
     {
@@ -238,7 +261,7 @@ class ValidClassNamePass extends NamespaceAwarePass
     }
 
     /**
-     * Error creation factory
+     * Error creation factory.
      *
      * @param string $msg
      * @param Stmt   $stmt

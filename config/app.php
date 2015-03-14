@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Clockwork\Support\Laravel\ClockworkServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
 
 	],
 
@@ -195,6 +196,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Clockwork' => 'Clockwork\Support\Laravel\Facade',
+		'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
 	],
 
 ];
