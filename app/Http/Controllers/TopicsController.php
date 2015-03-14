@@ -1,11 +1,26 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateTopicRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 class TopicsController extends Controller {
+
+	protected $topic;
+
+	/**
+	 * Instantiate a new TopicController instance.
+	 * @param Topic $topic 
+	 */
+	public function __construct(Topic $topic)
+	{
+		parent::__construct();
+
+		$this->middleware('auth', ['except' => 'index', 'show']);
+		$this->topic = $topic;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +29,7 @@ class TopicsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('topics.index', compact('topics', 'nodes', 'links'));
 	}
 
 	/**
@@ -24,7 +39,7 @@ class TopicsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('topics.create', compact('nodes', 'node'));
 	}
 
 	/**
@@ -32,9 +47,9 @@ class TopicsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateTopicRequest $request)
 	{
-		//
+		return redirect('topics.index');
 	}
 
 	/**
@@ -45,7 +60,7 @@ class TopicsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return view('topics.show', compact('topics', 'replies', 'nodeTopics', 'node'));
 	}
 
 	/**
@@ -56,7 +71,7 @@ class TopicsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		return view('topics.edit', compact('topic', 'nodes', 'node'));
 	}
 
 	/**
@@ -67,7 +82,7 @@ class TopicsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		
 	}
 
 	/**
