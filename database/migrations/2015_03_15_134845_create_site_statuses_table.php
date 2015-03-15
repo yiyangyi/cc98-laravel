@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSiteStatus extends Migration {
+class CreateSiteStatusesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,14 @@ class CreateSiteStatus extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('site_status', function(Blueprint $table)
+		Schema::create('site_statuses', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->string('day')->index();
+            $table->integer('users_count')->default(0);
             $table->integer('topics_count')->default(0);
-            $table->integer('images_count')->default(0);
             $table->integer('replies_count')->default(0);
-            $table->integer('registers_count')->default(0);
+            $table->integer('images_count')->default(0);
 			$table->timestamps();
 		});
 	}
@@ -31,7 +31,7 @@ class CreateSiteStatus extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('site_status');
+		Schema::drop('site_statuses');
 	}
 
 }
