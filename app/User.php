@@ -65,4 +65,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $query->orderBy('created_at', 'desc');
     }
+
+    public function getRememberTokenAttribute()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberTokenAttribute($value)
+    {
+        $this->attributes["remember_token"] = $value;
+    }
 }
