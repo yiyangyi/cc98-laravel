@@ -41,4 +41,24 @@ class Topic extends Model {
 		return $this->belongsToMany('User', 'attentions');
 	}
 
+	public function scopePin($query)
+	{
+		return $query->orderBy('order', 'desc');
+	}
+
+	public function scopeWhose($query, $user_id)
+	{
+		return $query->where('user_id', '=', $user_id)->with('node');
+	}
+
+	public function scopeRecent($query)
+	{
+		return $query->orderBy('created_at', 'desc');
+	}
+
+	public function scopeExcellent($query)
+	{
+		return $query->where('excellent', '=', true);
+	}
+
 }
