@@ -28,6 +28,11 @@ class Notification extends Model {
 		return $this->belongsTo('User', 'from_user_id');
 	}
 
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
     public function scopeAtTopic($query, $topic_id)
     {
         return $query->where('topic_id', '=', $topic_id);
