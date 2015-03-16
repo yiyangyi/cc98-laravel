@@ -28,4 +28,24 @@ class Notification extends Model {
 		return $this->belongsTo('User', 'from_user_id');
 	}
 
+    public function scopeAtTopic($query, $topic_id)
+    {
+        return $query->where('topic_id', '=', $topic_id);
+    }
+
+    public function scopeWithType($query, $type)
+    {
+        return $query->where('type', '=', $type);
+    }
+
+    public function scopeToWhom($query, $user_id)
+    {
+        return $query->where('user_id', '=', $user_id);
+    }
+
+    public function scopeFromWhom($query, $user_id)
+    {
+        return $query->where('from_user_id', '=', $user_id);
+    }
+
 }
