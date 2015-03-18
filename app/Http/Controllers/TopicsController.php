@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateTopicRequest;
 use App\Http\Controllers\Controller;
 
+use App\Topic;
 use Illuminate\Http\Request;
 
 class TopicsController extends Controller {
@@ -60,6 +61,13 @@ class TopicsController extends Controller {
 	 */
 	public function show($id)
 	{
+        $topic = Topic::findOrFail($id);
+        $replies = $topic->getRepliesWithLimit(80);
+        $node = $topic->node;
+        $nodeTopics = $topic->getSameTopic();
+
+        $topic->increment('view_count', 1);
+
 		return view('topics.show', compact('topics', 'replies', 'nodeTopics', 'node'));
 	}
 
