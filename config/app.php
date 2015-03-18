@@ -198,6 +198,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Clockwork' => 'Clockwork\Support\Laravel\Facade',
 		'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
+        'Markdown'  => 'Services\Markdown',
 	],
 
 ];
