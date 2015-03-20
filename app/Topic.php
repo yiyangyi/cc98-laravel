@@ -66,4 +66,37 @@ class Topic extends Model {
 		return $query->where('excellent', '=', true);
 	}
 
+    public function applyFilter($filter)
+    {
+        switch($filter) {
+            case 'noreply':
+                return $this->orderBy('reply', 'asc')->recent();
+                break;
+            case 'vote':
+                return $this->orderBy('vote_count', 'desc')->recent();
+                break;
+            case 'excellent':
+                return $this->excellent()->recent();
+                break;
+            case 'recent':
+                return $this->recent();
+                break;
+            default:
+                return $this->pin()->recentReply();
+                break;
+        }
+    }
+
+    public function getSameNodeTopics()
+    {
+
+    }
+
+    public function getTopicsWithFilter($filter, $limit = 20)
+    {
+        return $this->applyFilter($filter)
+                    ->with('')
+    }
+
+
 }
