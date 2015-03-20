@@ -149,4 +149,11 @@ class TopicsController extends Controller {
         return redirect('topic/index');
     }
 
+    public function recommend($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $topic->excellent = (!$topic->excellent);
+        $topic->save();
+        return redirect()->route('topics.show', [$topic])->with('message', 'Operation succeeded!');
+    }
 }
