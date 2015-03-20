@@ -100,4 +100,15 @@ class RepliesController extends Controller {
 		//
 	}
 
+    /**
+     * Support one specified user reply.
+     *
+     * @param $id
+     * @return Response
+     */
+    public function vote($id)
+    {
+
+    }
+
 }

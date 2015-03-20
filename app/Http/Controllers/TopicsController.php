@@ -122,6 +122,28 @@ class TopicsController extends Controller {
 		
 	}
 
+    /**
+     * Upvote the specified topic.
+     *
+     * @param $id topic_id
+     * @return Response
+     */
+    public function upvote($id)
+    {
+
+    }
+
+    /**
+     * Downvote the specified topic.
+     *
+     * @param $id topic_id
+     * @return Response
+     */
+    public function downvote($id)
+    {
+
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
