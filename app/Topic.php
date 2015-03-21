@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -60,6 +61,12 @@ class Topic extends Model {
 	{
 		return $query->orderBy('created_at', 'desc');
 	}
+
+    public function scopeRecentReplied($query)
+    {
+        return $query->where('created_at', '>', Carbon::today()->subMonth())
+                     ->orderBy('updated_at', 'desc');
+    }
 
 	public function scopeExcellent($query)
 	{
