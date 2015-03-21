@@ -12,7 +12,14 @@ class Topic extends Model {
 
 	protected $fillable = [];
 
-	public function node()
+
+    /**
+     *
+     * Relationships with other models
+     *
+     */
+
+    public function node()
 	{
 		return $this->belongsTo('Node');
 	}
@@ -47,7 +54,13 @@ class Topic extends Model {
 		return $this->belongsToMany('User', 'attentions');
 	}
 
-	public function scopePin($query)
+    /**
+     *
+     * Scope method for easier query.
+     *
+     */
+
+    public function scopePin($query)
 	{
 		return $query->orderBy('order', 'desc');
 	}
@@ -108,6 +121,5 @@ class Topic extends Model {
         return $this->applyFilter($filter)
                     ->with('')
     }
-
 
 }
