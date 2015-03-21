@@ -87,9 +87,13 @@ class Topic extends Model {
         }
     }
 
-    public function getSameNodeTopics()
+    public function getSameNodeTopics($limit = 8)
     {
-
+        return Topic::where('node_id', '=', $this->node_id)
+                    ->recent()
+                    ->take($limit)
+                    ->remember()
+                    ->get();
     }
 
     public function getTopicsWithFilter($filter, $limit = 20)
