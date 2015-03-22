@@ -2,8 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WriteNoteRequest;
 
-use Illuminate\Http\Request;
 
 class NotesController extends Controller {
 
@@ -45,7 +45,7 @@ class NotesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(WriteNoteRequest $request)
 	{
 		Note::create($request->input());
 
@@ -84,7 +84,7 @@ class NotesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
+	public function update(WriteNoteRequest $request, $id)
 	{
 		$note = Note::findOrFail($id);
 
