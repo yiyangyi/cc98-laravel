@@ -22,7 +22,9 @@ class WriteNoteRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'title' => 'required|min:4',
+            'body'  => 'requried|min:10',
+            'public' => 'boolean'
 		];
 	}
 
