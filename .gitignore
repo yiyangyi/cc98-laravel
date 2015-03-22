@@ -1,5 +1,6 @@
 .idea*
 /node_modules
-vendor/*
+/vendor
 .env 
 storage/clockwork/*
+tests/_output/*
