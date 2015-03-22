@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class NotesController extends Controller {
 
+
+    /**
+     * Instantiate a new NotesController instance.
+     * Require user authentication.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -14,7 +26,8 @@ class NotesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $notes = Auth::user()->notes()->recent();
+        return view('notes.index', compact('notes'));
 	}
 
 	/**
@@ -24,7 +37,7 @@ class NotesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('notes.create');
 	}
 
 	/**
@@ -32,9 +45,11 @@ class NotesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		Note::create($request->input());
+
+        return redirect('notes.index');
 	}
 
 	/**
@@ -45,7 +60,9 @@ class NotesController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$note = Note::findOrFail($id);
+
+        return view('notes.show', compact('note'));
 	}
 
 	/**
@@ -56,7 +73,9 @@ class NotesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$note = Note::findOrFail($id);
+
+        return view('notes.edit', compact('note'));
 	}
 
 	/**
@@ -65,9 +84,17 @@ class NotesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$note = Note::findOrFail($id);
+
+        $note->title = $request->input('title');
+        $note->body  = $request->input('body');
+
+        $note->save();
+
+        return redirect()->route('notes.index')->with('message', 'Updated successfully');
+
 	}
 
 	/**
@@ -78,7 +105,9 @@ class NotesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Note::destroy($id);
+
+        return redirect()->route('notes.index')->with('message', 'Deleted succesfully');
 	}
 
 }
