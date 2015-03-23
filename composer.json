@@ -9,7 +9,8 @@
 		"itsgoingd/clockwork": "~1.7",
 		"zizaco/entrust": "dev-laravel-5",
 		"codeception/codeception": "*",
-		"predis/predis": "~1.0"
+		"predis/predis": "~1.0",
+		"dropbox/dropbox-sdk": "~1.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
