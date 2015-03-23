@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Notification;
 use Illuminate\Http\Request;
 
 class NotificationsController extends Controller {
@@ -14,61 +15,14 @@ class NotificationsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$notifications = Auth::user()->notifications()->paginate(15);
+
+        Auth::user()->notifications_count = 0;
+        Auth::user()->save();
+
+        return view('notifications.index', compact('notifications'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -78,7 +32,9 @@ class NotificationsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Notification::destroy($id);
+
+        return redirect()->route('notifications.index');
 	}
 
 }
