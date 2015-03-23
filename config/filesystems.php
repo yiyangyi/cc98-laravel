@@ -57,9 +57,9 @@ return [
 		],
 
         'dropbox' => [
-            'driver' => 'dropbox',
-            'accessToken' => 'your-access-token',
-            'clientIdentifier' => 'your-client-indentifier',
+            'driver'           => 'dropbox',
+            'accessToken'      => 'your-access-token',
+            'clientIdentifier' => 'your-client-identifier',
         ],
 
 		'rackspace' => [
