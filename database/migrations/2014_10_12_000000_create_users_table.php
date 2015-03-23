@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
 			$table->string('avatar')->nullable();
 			$table->boolean('blocked')->default(false)->index();
+            $table->integer('treasure')->default(0)->index();
 			$table->integer('topic_count')->default(0)->index();
 			$table->integer('reply_count')->default(0)->index();
 			$table->integer('notification_count')->default(0);
