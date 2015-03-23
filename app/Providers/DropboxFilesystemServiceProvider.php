@@ -15,9 +15,9 @@ class DropboxFilesystemServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-        Storage::extend('dropbox', function()
+        Storage::extend('dropbox', function($app, $config)
         {
-            $client = new Client($config["accessToken"], config["ClientIdentifier"]);
+            $client = new Client($config["accessToken"], $config["ClientIdentifier"]);
             $adapter = new DropboxAdapter($client);
             $filesystem = new Filesystem($adapter);
             return $filesystem;
