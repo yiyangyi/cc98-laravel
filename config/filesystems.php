@@ -56,6 +56,12 @@ return [
 			'bucket' => 'your-bucket',
 		],
 
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'accessToken' => 'your-access-token',
+            'clientIdentifier' => 'your-client-indentifier',
+        ],
+
 		'rackspace' => [
 			'driver'    => 'rackspace',
 			'username'  => 'your-username',
