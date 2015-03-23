@@ -27,6 +27,7 @@ class NotesController extends Controller {
 	public function index()
 	{
         $notes = Auth::user()->notes()->recent();
+        $notes = $notes->paginate(15);
         return view('notes.index', compact('notes'));
 	}
 
