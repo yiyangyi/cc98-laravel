@@ -13,25 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 class RepliesController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    public function __construct()
+    {
+        parent::__construct();
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+        $this->middleware('auth');
+    }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -54,39 +41,6 @@ class RepliesController extends Controller {
         $topic->save();
 
         Auth::user()->increment('reply_count', 1);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
 	}
 
 	/**
