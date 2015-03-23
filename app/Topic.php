@@ -119,7 +119,14 @@ class Topic extends Model {
     public function getTopicsWithFilter($filter, $limit = 20)
     {
         return $this->applyFilter($filter)
-                    ->with('')
+                    ->with('');
+    }
+
+    public static function makeExcerpt($body)
+    {
+        $body = strip_tags($body);
+        $excerpt = trim(preg_replace('/\s\s+/', '', $body));
+        return str_limit($excerpt, 200);
     }
 
 }
