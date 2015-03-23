@@ -145,6 +145,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
         'App\Providers\MarkdownServiceProvider',
+        'App\Providers\DropboxFilesystemServiceProvider',
 
 		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
