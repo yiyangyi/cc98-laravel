@@ -32,9 +32,16 @@ class NotificationsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Notification::destroy($id);
+        Notification::destroy($id);
 
-        return redirect()->route('notifications.index');
+        return view('notifications.index');
 	}
+
+    public function clear($id)
+    {
+        Notification::where('user_id', '=', Auth::user()->id)->delete();
+
+        return view('notifications.index');
+    }
 
 }
