@@ -3,15 +3,31 @@
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Topic extends Model {
 
     use SoftDeletes;
 
+    use SearchableTrait;
+
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [];
 
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        'columns' => [
+
+        ],
+        'joins'   => [
+
+        ],
+    ];
 
     /**
      *
