@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5034b7ea0028f6a01aaeb5eba35b85b",
+    "hash": "29b7dab3069e8bc7186187e5d65ca59b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1508,6 +1508,63 @@
                 "time"
             ],
             "time": "2015-03-08 14:05:44"
+        },
+        {
+            "name": "nicolaslopezj/searchable",
+            "version": "1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolaslopezj/searchable.git",
+                "reference": "8e043bea92addc0fe5f5980563bd07b88f25c72d",
+                "mirrors": [
+                    {
+                        "url": "/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicolaslopezj/searchable/zipball/8e043bea92addc0fe5f5980563bd07b88f25c72d",
+                "reference": "8e043bea92addc0fe5f5980563bd07b88f25c72d",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.phpcomposer.com/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/database": "4.2.x|~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nicolaslopezj\\Searchable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Lopez",
+                    "email": "nicolaslopezj@me.com"
+                }
+            ],
+            "description": "Eloquent model search trait.",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "search",
+                "searchable"
+            ],
+            "time": "2015-03-17 01:11:27"
         },
         {
             "name": "nikic/php-parser",
