@@ -10,6 +10,7 @@ use App\Topic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Thujohn\Rss\Rss;
 
 class TopicsController extends Controller {
 
@@ -178,5 +179,30 @@ class TopicsController extends Controller {
         $topic->excellent = (!$topic->excellent);
         $topic->save();
         return redirect()->route('topics.show', [$topic])->with('message', 'Operation succeeded!');
+    }
+
+    public function feed()
+    {
+        $topics = Topic::excellent()->recent()->limit(20)->get();
+
+        $channel = [
+            'title'       => 'CC98 ZJU FORUM',
+            'description' => 'A forum for zju students',
+            'link'        => url('feed')
+        ];
+
+        $feed = Rss::feed('2.0', 'UTF-8');
+        $feed->channel($channel);
+
+        foreach($topics as $topic)
+        {
+            $feed->item([
+                'title' => $topic->title,
+                'description|cdata' => str_limit($topic->body, 200),
+                'link' => route('topics.show', $topic->id)
+            ]);
+        }
+
+        return response($feed, 200)->header('Content-Type' => 'text/xml');
     }
 }
