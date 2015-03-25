@@ -149,6 +149,7 @@ return [
 
 		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
+        'Thujohn\Rss\RssServiceProvider',
 
 	],
 
@@ -200,6 +201,7 @@ return [
 		'Clockwork' => 'Clockwork\Support\Laravel\Facade',
 		'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
         'Markdown'  => 'Services\Markdown',
+        'Rss'       => 'Thujohn\Rss\RssFacade',
 	],
 
 ];
